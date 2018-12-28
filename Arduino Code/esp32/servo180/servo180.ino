@@ -35,10 +35,10 @@ void loop() {
       pos = inString.toInt();
       Serial.println(pos);
 
-      if(pos == 69){
+      if(pos == 180){
         digitalWrite(LED,HIGH);  
       }
-      else if(pos == 98){
+      else if(pos == 0){
         digitalWrite(LED,LOW);  
         }
       
