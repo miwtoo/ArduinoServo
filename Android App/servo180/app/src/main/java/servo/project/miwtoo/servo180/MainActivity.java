@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,14 @@ import app.akexorcist.bluetotohspp.library.DeviceList;
 
 public class MainActivity extends Activity {
     BluetoothSPP bt;
-    //TextView txtNum =  (TextView) findViewById(R.id.textView4);
+    TextView txtNum;
+    int pos;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         bt = new BluetoothSPP(this);
 
@@ -92,44 +96,78 @@ public class MainActivity extends Activity {
         Button btn90 = (Button)findViewById(R.id.button8);
         Button btn135 = (Button)findViewById(R.id.button);
         Button btn180 = (Button)findViewById(R.id.button6);
+        final SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        txtNum = (TextView) findViewById(R.id.textView4);
+
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                pos = progress;
+                bt.send(pos + "", true);
+                txtNum.setText(pos+"");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         btn0.setOnClickListener(new OnClickListener(){
             public void onClick(View v){
-                bt.send("0", true);
+                //bt.send("0", true);
+                seekBar.setProgress(0);
                 Toast.makeText(getApplicationContext(), "0"
                         , Toast.LENGTH_SHORT).show();
-                //txtNum.se
+                txtNum.setText("0");
+
             }
         });
         btn45.setOnClickListener(new OnClickListener(){
             public void onClick(View v){
-                bt.send("45", true);
+                //bt.send("45", true);
+                seekBar.setProgress(45);
                 Toast.makeText(getApplicationContext(), "45"
                         , Toast.LENGTH_SHORT).show();
-                //txtNum.setText("45");
+                txtNum.setText("45");
+
             }
         });
         btn90.setOnClickListener(new OnClickListener(){
             public void onClick(View v){
-                bt.send("90", true);
+                //bt.send("90", true);
+                seekBar.setProgress(90);
                 Toast.makeText(getApplicationContext(), "90"
                         , Toast.LENGTH_SHORT).show();
-                //txtNum.setText("90");
+                txtNum.setText("90");
+
             }
         });
         btn135.setOnClickListener(new OnClickListener(){
             public void onClick(View v){
-                bt.send("135", true);
+                //bt.send("135", true);
+                seekBar.setProgress(135);
                 Toast.makeText(getApplicationContext(), "135"
                         , Toast.LENGTH_SHORT).show();
-                //txtNum.setText("135");
+                txtNum.setText("135");
+
             }
         });
         btn180.setOnClickListener(new OnClickListener(){
             public void onClick(View v){
-                bt.send("180", true);
+                //bt.send("180", true);
+                txtNum.setText("180");
+                seekBar.setProgress(180);
                 Toast.makeText(getApplicationContext(), "180"
                         , Toast.LENGTH_SHORT).show();
-                //txtNum.setText("180");
+
+
             }
         });
     }
