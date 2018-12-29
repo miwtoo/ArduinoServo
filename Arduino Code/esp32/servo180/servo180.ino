@@ -34,14 +34,15 @@ void loop() {
     if (inChar == '\n') {
       pos = inString.toInt();
       Serial.println(pos);
+      SerialBT.write(pos);
 
-      if(pos == 180){
-        digitalWrite(LED,HIGH);  
+      if (pos == 180) {
+        digitalWrite(LED, HIGH);
       }
-      else if(pos == 0){
-        digitalWrite(LED,LOW);  
-        }
-      
+      else if (pos == 0) {
+        digitalWrite(LED, LOW);
+      }
+
       inString = "";
     }
   }
