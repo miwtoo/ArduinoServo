@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -23,6 +24,7 @@ import app.akexorcist.bluetotohspp.library.DeviceList;
 public class MainActivity extends Activity {
     BluetoothSPP bt;
     TextView txtNum;
+    EditText editText;
     int pos;
 
 
@@ -101,14 +103,12 @@ public class MainActivity extends Activity {
     }
 
     public void setup() {
-        Button btn0 = (Button)findViewById(R.id.button7);
-        Button btn45 = (Button)findViewById(R.id.button9);
-        Button btn90 = (Button)findViewById(R.id.button8);
-        Button btn135 = (Button)findViewById(R.id.button);
-        Button btn180 = (Button)findViewById(R.id.button6);
         final SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         txtNum = (TextView) findViewById(R.id.textView4);
         final Croller croller = (Croller) findViewById(R.id.croller);
+        Button plusBtn  = (Button) findViewById(R.id.button5);
+        Button minusBtn  = (Button) findViewById(R.id.button6);
+        editText = (EditText) findViewById(R.id.editText2);
 
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener(){
 
@@ -129,11 +129,7 @@ public class MainActivity extends Activity {
         croller.setOnProgressChangedListener(new Croller.onProgressChangedListener() {
             @Override
             public void onProgressChanged(int progress) {
-                pos = progress;
-                seekBar.setProgress(pos);
-                bt.send(pos + "", true);
-                txtNum.setText(pos+"");
-
+                seekBar.setProgress(progress);
             }
         });
 
@@ -141,9 +137,11 @@ public class MainActivity extends Activity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 pos = progress;
-                croller.setProgress(pos);
                 bt.send(pos + "", true);
+
+                croller.setProgress(pos);
                 txtNum.setText(pos+"");
+                editText.setText(pos+"");
             }
 
             @Override
@@ -157,55 +155,21 @@ public class MainActivity extends Activity {
             }
         });
 
-        btn0.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-                //bt.send("0", true);
-                seekBar.setProgress(0);
-                croller.setProgress(0);
-                //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_SHORT).show();
-                txtNum.setText("0");
+        plusBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seekBar.setProgress(pos+=5);
+            }
+        });
 
+        minusBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seekBar.setProgress(pos-=5);
             }
         });
-        btn45.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-                //bt.send("45", true);
-                seekBar.setProgress(45);
-                croller.setProgress(45);
-                //Toast.makeText(getApplicationContext(), "45", Toast.LENGTH_SHORT).show();
-                txtNum.setText("45");
 
-            }
-        });
-        btn90.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-                //bt.send("90", true);
-                seekBar.setProgress(90);
-                croller.setProgress(90);
-                //Toast.makeText(getApplicationContext(), "90", Toast.LENGTH_SHORT).show();
-                txtNum.setText("90");
 
-            }
-        });
-        btn135.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-                //bt.send("135", true);
-                seekBar.setProgress(135);
-                croller.setProgress(135);
-                //Toast.makeText(getApplicationContext(), "135", Toast.LENGTH_SHORT).show();
-                txtNum.setText("135");
-
-            }
-        });
-        btn180.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-                //bt.send("180", true);
-                txtNum.setText("180");
-                croller.setProgress(180);
-                seekBar.setProgress(180);
-                //Toast.makeText(getApplicationContext(), "180", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

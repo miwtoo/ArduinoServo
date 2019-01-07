@@ -18,7 +18,6 @@
         android:background="@drawable/ic_bluetooth"
         android:scaleType="fitCenter"
         android:tint="@android:color/black"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
@@ -69,14 +68,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="258dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
             <com.sdsmdg.harjot.crollerTest.Croller
                 android:id="@+id/croller"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="272dp"
                 android:layout_centerInParent="true"
                 app:back_circle_color="#EDEDED"
                 app:indicator_color="#0B3C49"
@@ -85,7 +84,7 @@
                 app:label=" "
                 app:label_color="#000000"
                 app:main_circle_color="#FFFFFF"
-                app:max="180"
+                app:max="360"
                 app:min="0"
                 app:progress_primary_color="#0B3C49"
                 app:progress_secondary_color="#EEEEEE"
@@ -97,65 +96,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="180" />
+                android:max="360" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button7"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
-
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_bg_stroke"
-                android:padding="15dp"
-                android:text="0" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button9"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_stroke"
-                android:padding="15dp"
-                android:text="45" />
+                <ToggleButton
+                    android:id="@+id/toggleButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ToggleButton"
+                    android:textOff="Auto"
+                    android:textOn="Auto" />
 
-            <Button
-                android:id="@+id/button8"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_stroke"
-                android:padding="15dp"
-                android:text="90" />
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+" />
 
-            <Button
-                android:id="@+id/button"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_stroke"
-                android:padding="15dp"
-                android:text="135" />
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="0" />
 
-            <Button
-                android:id="@+id/button6"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_stroke"
-                android:padding="15dp"
-                android:text="180" />
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="-" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
